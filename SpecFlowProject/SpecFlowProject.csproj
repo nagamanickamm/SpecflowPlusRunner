@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Features\Calculator.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\SpecFlowFeature.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckBuild Remove="Features\Calculator.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.7.141" />
+
+    
+    <PackageReference Include="SpecRun.SpecFlow" Version="3.7.3" />
+    
+
+    
+
+    
+
+    
+
+    
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    
+
+    
+
+    
+
+    
+
+    
+    <PackageReference Include="WebDriverManager" Version="2.11.1" />
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Default.srprofile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="my.runsettings">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Pages\" />
+  </ItemGroup>
+
+</Project>
