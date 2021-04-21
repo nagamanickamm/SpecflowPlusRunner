@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Threading;
 using FluentAssertions;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using SpecFlowProject.Drivers;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowProject.Steps
@@ -41,14 +38,14 @@ namespace SpecFlowProject.Steps
         [Given("the second number is (.*)")]
         public void GivenTheSecondNumberIs(int number)
         {
-   
+
             Console.Write("Given");
         }
 
         [When("the two numbers are added")]
         public void WhenTheTwoNumbersAreAdded()
         {
-        
+
             Console.Write("When");
         }
 

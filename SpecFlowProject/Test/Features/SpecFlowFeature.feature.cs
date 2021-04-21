@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlowProject.Features
+namespace SpecFlowProject.Test.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -19,7 +19,7 @@ namespace SpecFlowProject.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.7.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("SpecFlowFeature", SourceFile="Features\\SpecFlowFeature.feature", SourceLine=0)]
+    [TechTalk.SpecRun.FeatureAttribute("SpecFlowFeature", SourceFile="Test\\Features\\SpecFlowFeature.feature", SourceLine=0)]
     public partial class SpecFlowFeatureFeature
     {
         
@@ -34,7 +34,7 @@ namespace SpecFlowProject.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "SpecFlowFeature", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Test/Features", "SpecFlowFeature", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

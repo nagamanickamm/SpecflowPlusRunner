@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlowProject.Features
+namespace SpecFlowProject.Test.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -23,7 +23,7 @@ namespace SpecFlowProject.Features
 Simple calculator for adding **two** numbers
 
 Link to a feature: [Calculator](SpecFlowProject/Features/Calculator.feature)
-***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**", SourceFile="Features\\Calculator.feature", SourceLine=0)]
+***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**", SourceFile="Test\\Features\\Calculator.feature", SourceLine=0)]
     public partial class CalculatorFeature
     {
         
@@ -38,7 +38,7 @@ Link to a feature: [Calculator](SpecFlowProject/Features/Calculator.feature)
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Calculator", @"![Calculator](https://specflow.org/wp-content/uploads/2020/09/calculator.png)
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Test/Features", "Calculator", @"![Calculator](https://specflow.org/wp-content/uploads/2020/09/calculator.png)
 Simple calculator for adding **two** numbers
 
 Link to a feature: [Calculator](SpecFlowProject/Features/Calculator.feature)
