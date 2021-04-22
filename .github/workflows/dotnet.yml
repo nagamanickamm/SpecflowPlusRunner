@@ -21,12 +21,15 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
     - name: Setup Firefox
     # You may pin to the exact commit or the version.
     # uses: browser-actions/setup-firefox@be57d2b69141a920523254ad109a4008dcc73f04
-      uses: browser-actions/setup-firefox@v0.0.0
+      uses: browser-actions/setup-firefox@latest
       with:
     # The Firefox version to install and use. Examples: 84.0, 84.0.1, latest-esr
-        firefox-version: 84.0
+        firefox-version: latest
+    - run: firefox --version
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    
+    
