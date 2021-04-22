@@ -6,7 +6,6 @@ Link to a feature: [Calculator](SpecFlowProject/Features/Calculator.feature)
 ***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**
 
 @calc
-@retry(2)
 Scenario: Add two numbers
 	Given the first number is 50
 	And the second number is 70

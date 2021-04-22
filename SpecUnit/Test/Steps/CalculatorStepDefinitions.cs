@@ -1,9 +1,8 @@
 ﻿using System;
-using FluentAssertions;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SpecFlowProject.Steps
+namespace SpecUnit.Steps
 {
     [Binding]
     public sealed class CalculatorStepDefinitions
@@ -53,7 +52,6 @@ namespace SpecFlowProject.Steps
         public void ThenTheResultShouldBe(int result)
         {
             Console.Write("Then");
-            result.Should().Be(55);
         }
     }
 }

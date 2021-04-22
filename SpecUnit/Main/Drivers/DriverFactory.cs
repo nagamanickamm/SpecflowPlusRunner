@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 
-namespace SpecFlowProject.Drivers
+namespace SpecUnit.Drivers
 {
     class DriverFactory
     {

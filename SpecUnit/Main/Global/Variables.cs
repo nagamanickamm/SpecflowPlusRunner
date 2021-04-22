@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SpecFlowProject.Global
+namespace SpecUnit.Global
 {
     static class Variables
     {

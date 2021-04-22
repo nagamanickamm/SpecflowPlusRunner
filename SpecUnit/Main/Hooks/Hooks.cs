@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using OpenQA.Selenium;
-using SpecFlowProject.Drivers;
+using SpecUnit.Drivers;
 using TechTalk.SpecFlow;
 
-namespace SpecFlowProject.Hooks
+namespace SpecUnit.Hooks
 {
 
 
@@ -20,10 +18,10 @@ namespace SpecFlowProject.Hooks
 
         private ScenarioContext scenarioContext;
         private FeatureContext featureContext;
-        private static string path = "C:\\Users\\user\\source\\repos2\\SpecSolution\\TestResults\\";
         private static ExtentTest featureName;
         private static ExtentTest scenario;
         private static ExtentReports extent;
+        private static string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Replace("SpecUnit\\bin\\Debug\\net5.0", "TestResults\\SpecUnit\\");
 
         public Hooks(FeatureContext _featureContext)
         {
@@ -33,10 +31,7 @@ namespace SpecFlowProject.Hooks
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            var htmlReporter = new ExtentHtmlReporter(path);
-
-            //string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\extent";
-            //ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
+            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(path);
             htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Standard;
             extent = new ExtentReports();
             extent.AttachReporter(htmlReporter);
@@ -46,7 +41,7 @@ namespace SpecFlowProject.Hooks
         public static void AfterTestRun()
         {
             extent.Flush();
-            
+
         }
 
         [BeforeFeature]
@@ -59,7 +54,7 @@ namespace SpecFlowProject.Hooks
         }
 
         [AfterFeature]
-        public static void  AfterFeature(FeatureContext _featureContext)
+        public static void AfterFeature(FeatureContext _featureContext)
         {
             Console.Write("Starting " + _featureContext.FeatureInfo.Title);
             _featureContext.Get<IWebDriver>(Global.Variables.driverIntance).Quit();
@@ -81,10 +76,11 @@ namespace SpecFlowProject.Hooks
         public void AfterScenario()
         {
             Console.Write("Im am after Scenario");
-            if (scenarioContext.TestError != null) {
+            if (scenarioContext.TestError != null)
+            {
                 IWebDriver driver = featureContext.Get<IWebDriver>(Global.Variables.driverIntance);
                 Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-                ss.SaveAsFile(path+"\\screenshot.png", ScreenshotImageFormat.Png);
+                ss.SaveAsFile(path + "\\screenshot.png", ScreenshotImageFormat.Png);
                 scenario.AddScreenCaptureFromPath("screenshot.png");
             }
         }
@@ -93,7 +89,7 @@ namespace SpecFlowProject.Hooks
         public void InsertReportingSteps()
         {
             var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
-           
+
             if (scenarioContext.TestError == null)
             {
                 if (stepType == "Given")
