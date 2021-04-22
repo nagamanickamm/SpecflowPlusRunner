@@ -27,7 +27,7 @@ jobs:
       uses: browser-actions/setup-firefox@latest
       with:
     # The Firefox version to install and use. Examples: 84.0, 84.0.1, latest-esr
-        firefox-version: 84.0
+        firefox-version: latest
     - run: firefox --version
     - name: Test
       run: dotnet test --no-build --verbosity normal
