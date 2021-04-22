@@ -19,7 +19,7 @@ namespace SpecFlowProject.Hooks
         private static ExtentTest featureName;
         private static ExtentTest scenario;
         private static ExtentReports extent;
-        private static string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Replace("SpecUnit\\bin\\Debug\\net5.0", "TestResults\\SpecRun\\");
+        private static string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Replace("SpecFlowProject\\bin\\Debug\\net5.0", "TestResults\\SpecRun\\");
 
 
         public Hooks(FeatureContext _featureContext)

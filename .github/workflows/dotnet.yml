@@ -30,6 +30,7 @@ jobs:
         firefox-version: latest
     - run: firefox --version
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal ./SpecFlowProject/SpecFlowProject.csproj
+
     
     

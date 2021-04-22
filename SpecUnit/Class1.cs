@@ -6,7 +6,7 @@ namespace SpecUnit
 {
     class Class1
     {
-        [Test]
+       //[Test]
         public void testMethod()
         {
             // start reporters
