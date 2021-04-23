@@ -34,7 +34,17 @@ jobs:
     - uses: actions/upload-artifact@v2
       if: always()
       with:
-        name: my-artifact
-        path: /home/runner/work/SpecflowPlusRunner/SpecflowPlusRunner/SpecFlowProject/TestResults/
+        name: specfloe-report
+        path:   
+          /home/runner/work/SpecflowPlusRunner/SpecflowPlusRunner/SpecFlowProject/TestResults/
+    - uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: extent-report
+        path:
+          /home/runner/work/SpecflowPlusRunner/TestResults/SpecRun/      
+    
+    
+        
     
     
