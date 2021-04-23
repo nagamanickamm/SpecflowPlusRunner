@@ -20,7 +20,7 @@ namespace SpecFlowProject.Hooks
         private static ExtentTest scenario;
         private static ExtentReports extent;
         private static string assemblyPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location); 
-        private static string path = assemblyPath.Split("SpecflowPlusRunner")[0] + "/SpecflowPlusRunner/TestResults/SpecRun/";
+        private static string path = assemblyPath.Split("SpecflowPlusRunner")[0] + "SpecflowPlusRunner/TestResults/SpecRun/";
 
 
         public Hooks(FeatureContext _featureContext)
