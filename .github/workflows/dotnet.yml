@@ -35,7 +35,7 @@ jobs:
           # The Chromium version to install and use.
           chromium-version: 89.0.4389.128
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./SpecFlowProject/SpecFlowProject.csproj
+      run: dotnet test --no-build --verbosity normal ./TestProject/TestProject.csproj
     - uses: actions/upload-artifact@v2
       if: always()
       with:
