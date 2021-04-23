@@ -9,8 +9,6 @@ using TechTalk.SpecFlow;
 
 namespace SpecUnit.Hooks
 {
-
-
     [Binding]
     public sealed class Hooks
     {
@@ -21,7 +19,9 @@ namespace SpecUnit.Hooks
         private static ExtentTest featureName;
         private static ExtentTest scenario;
         private static ExtentReports extent;
-        private static string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Replace("SpecUnit\\bin\\Debug\\net5.0", "TestResults\\SpecUnit\\");
+        private static string assemblyPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+        private static string path = assemblyPath.Split("SpecflowPlusRunner")[0] + "SpecflowPlusRunner/TestResults/SpecRun/";
+
 
         public Hooks(FeatureContext _featureContext)
         {
@@ -49,15 +49,15 @@ namespace SpecUnit.Hooks
         {
             featureName = extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);
             Console.Write("Starting " + _featureContext.FeatureInfo.Title);
-            DriverFactory driverFactory = new DriverFactory();
-            _featureContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
+            //DriverFactory driverFactory = new DriverFactory();
+            //_featureContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
         }
 
         [AfterFeature]
         public static void AfterFeature(FeatureContext _featureContext)
         {
             Console.Write("Starting " + _featureContext.FeatureInfo.Title);
-            _featureContext.Get<IWebDriver>(Global.Variables.driverIntance).Quit();
+            //_featureContext.Get<IWebDriver>(Global.Variables.driverIntance).Quit();
         }
 
         [BeforeScenario]
@@ -67,7 +67,9 @@ namespace SpecUnit.Hooks
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title);
 
             Console.Write("Im am Before Scenario");
-            IWebDriver driver = featureContext.Get<IWebDriver>(Global.Variables.driverIntance);
+            DriverFactory driverFactory = new DriverFactory();
+            scenarioContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
+            IWebDriver driver = driverFactory.getDriver();
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Navigate().GoToUrl(Global.Variables.baseURL);
         }
@@ -76,51 +78,53 @@ namespace SpecUnit.Hooks
         public void AfterScenario()
         {
             Console.Write("Im am after Scenario");
+            IWebDriver driver = scenarioContext.Get<IWebDriver>(Global.Variables.driverIntance);
             if (scenarioContext.TestError != null)
             {
-                IWebDriver driver = featureContext.Get<IWebDriver>(Global.Variables.driverIntance);
                 Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
                 ss.SaveAsFile(path + "\\screenshot.png", ScreenshotImageFormat.Png);
                 scenario.AddScreenCaptureFromPath("screenshot.png");
             }
+            driver.Quit();
         }
 
-        [AfterStep]
-        public void InsertReportingSteps()
-        {
-            var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
+        //[AfterStep]
+        //public void InsertReportingSteps(ScenarioStepContext scenarioStepContext)
+        //{
 
-            if (scenarioContext.TestError == null)
-            {
-                if (stepType == "Given")
-                    scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text);
-                else if (stepType == "When")
-                    scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text);
-                else if (stepType == "Then")
-                    scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text);
-                else if (stepType == "And")
-                    scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text);
-            }
-            else if (scenarioContext.TestError != null)
-            {
-                if (stepType == "Given")
-                {
-                    scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
-                }
-                else if (stepType == "When")
-                {
-                    scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
-                }
-                else if (stepType == "Then")
-                {
-                    scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
-                }
-                else if (stepType == "And")
-                {
-                    scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
-                }
-            }
-        }
+        //    var stepType = scenarioStepContext.StepInfo.StepDefinitionType.ToString(); ;
+
+        //    if (scenarioContext.TestError == null)
+        //    {
+        //        if (stepType == "Given")
+        //            scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text);
+        //        else if (stepType == "When")
+        //            scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text);
+        //        else if (stepType == "Then")
+        //            scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text);
+        //        else if (stepType == "And")
+        //            scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text);
+        //    }
+        //    else if (scenarioContext.TestError != null)
+        //    {
+        //        if (stepType == "Given")
+        //        {
+        //            scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
+        //        }
+        //        else if (stepType == "When")
+        //        {
+        //            scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
+        //        }
+        //        else if (stepType == "Then")
+        //        {
+        //            scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
+        //        }
+        //        else if (stepType == "And")
+        //        {
+        //            scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
+        //        }
+        //    }
+        //}
 
     }
 }

@@ -10,14 +10,12 @@ namespace SpecUnit.Steps
 
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
         private readonly ScenarioContext _scenarioContext;
-        private readonly FeatureContext featureContext;
-        private readonly IWebDriver driver;
+        private IWebDriver driver;
 
-        public CalculatorStepDefinitions(FeatureContext featureContext, ScenarioContext scenarioContext)
+        public CalculatorStepDefinitions(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
-            this.featureContext = featureContext;
-            driver = featureContext.Get<IWebDriver>(Global.Variables.driverIntance);
+            driver = scenarioContext.Get<IWebDriver>(Global.Variables.driverIntance);
         }
 
         [Given("the first number is (.*)"), Scope(Tag = "calc")]
