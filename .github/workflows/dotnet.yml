@@ -29,12 +29,17 @@ jobs:
     # The Firefox version to install and use. Examples: 84.0, 84.0.1, latest-esr
         firefox-version: 84.0.2
     - run: firefox --version
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@latest
+      with:
+          # The Chromium version to install and use.
+          chromium-version: 89.0.4389.128
     - name: Test
       run: dotnet test --no-build --verbosity normal ./SpecFlowProject/SpecFlowProject.csproj
     - uses: actions/upload-artifact@v2
       if: always()
       with:
-        name: specfloe-report
+        name: specflow-report
         path:   
           /home/runner/work/SpecflowPlusRunner/SpecflowPlusRunner/SpecFlowProject/TestResults/
     - uses: actions/upload-artifact@v2
