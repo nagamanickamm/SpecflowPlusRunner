@@ -19,7 +19,8 @@ namespace SpecFlowProject.Hooks
         private static ExtentTest featureName;
         private static ExtentTest scenario;
         private static ExtentReports extent;
-        private static string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Replace("SpecFlowProject\\bin\\Debug\\net5.0", "TestResults\\SpecRun\\");
+        private static string assemblyPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+        private static string path = assemblyPath.Split("SpecFlowProject")[0] + "TestResults\\SpecRun\\";
 
 
         public Hooks(FeatureContext _featureContext)
@@ -50,6 +51,7 @@ namespace SpecFlowProject.Hooks
             Console.Write("Starting " + _featureContext.FeatureInfo.Title);
             DriverFactory driverFactory = new DriverFactory();
             _featureContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
+            Console.WriteLine("Path:"+path);
         }
 
         [AfterFeature]
