@@ -31,5 +31,9 @@ jobs:
     - run: firefox --version
     - name: Test
       run: dotnet test --no-build --verbosity normal ./SpecFlowProject/SpecFlowProject.csproj
+    - uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: /home/runner/work/SpecflowPlusRunner/SpecflowPlusRunner/SpecFlowProject/TestResults/
     
     
