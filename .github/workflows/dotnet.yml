@@ -37,7 +37,7 @@ jobs:
         name: my-artifact
         path: |
           /home/runner/work/SpecflowPlusRunner/SpecflowPlusRunner/SpecFlowProject/TestResults/
-          /home/runner/work/SpecflowPlusRunner/SpecflowPlusRunner/TestResults/
+          /home/runner/work/SpecflowPlusRunner/TestResults/
     
         
     
