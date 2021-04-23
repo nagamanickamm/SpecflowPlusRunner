@@ -49,7 +49,7 @@ namespace SpecFlowProject.Hooks
         {
             featureName = extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);
             Console.Write("Starting " + _featureContext.FeatureInfo.Title);
-            DriverFactory driverFactory = new DriverFactory();
+            DriverFactory driverFactory = new DriverFactory("Chrome");
             _featureContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
             Console.WriteLine("Path:"+path);
         }
