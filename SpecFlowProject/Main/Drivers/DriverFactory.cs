@@ -11,7 +11,9 @@ namespace SpecFlowProject.Drivers
         public DriverFactory()
         {
             new WebDriverManager.DriverManager().SetUpDriver(new WebDriverManager.DriverConfigs.Impl.FirefoxConfig());
-            driverInstance = new FirefoxDriver();
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            firefoxOptions.AddArguments("-headless");
+            driverInstance = new FirefoxDriver(firefoxOptions);
             driverInstance.Manage().Window.Maximize();
             driverInstance.Navigate().GoToUrl(Global.Variables.baseURL);
         }
