@@ -1,5 +1,5 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SpecUnit.Steps

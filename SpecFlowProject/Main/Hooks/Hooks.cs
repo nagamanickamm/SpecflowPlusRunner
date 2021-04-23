@@ -1,10 +1,10 @@
-﻿using System;
-using System.Reflection;
-using AventStack.ExtentReports;
+﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using OpenQA.Selenium;
 using SpecFlowProject.Drivers;
+using System;
+using System.Reflection;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowProject.Hooks
@@ -19,7 +19,7 @@ namespace SpecFlowProject.Hooks
         private static ExtentTest featureName;
         private static ExtentTest scenario;
         private static ExtentReports extent;
-        private static string assemblyPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location); 
+        private static string assemblyPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
         private static string path = assemblyPath.Split("SpecflowPlusRunner")[0] + "SpecflowPlusRunner/TestResults/SpecRun/";
 
 
@@ -51,7 +51,7 @@ namespace SpecFlowProject.Hooks
             Console.Write("Starting " + _featureContext.FeatureInfo.Title);
             DriverFactory driverFactory = new DriverFactory("Chrome");
             _featureContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
-            Console.WriteLine("Path:"+path);
+            Console.WriteLine("Path:" + path);
         }
 
         [AfterFeature]

@@ -10,7 +10,7 @@ namespace SpecFlowProject.Drivers
 
         public IWebDriver driverInstance;
 
-        public DriverFactory(string name="Firefox")
+        public DriverFactory(string name = "Firefox")
         {
             if (name == "Firefox")
             {

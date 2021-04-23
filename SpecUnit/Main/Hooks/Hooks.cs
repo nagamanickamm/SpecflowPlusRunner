@@ -1,10 +1,10 @@
-﻿using System;
-using System.Reflection;
-using AventStack.ExtentReports;
+﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using OpenQA.Selenium;
 using SpecUnit.Drivers;
+using System;
+using System.Reflection;
 using TechTalk.SpecFlow;
 
 namespace SpecUnit.Hooks

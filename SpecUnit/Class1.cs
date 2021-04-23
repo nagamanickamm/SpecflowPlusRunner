@@ -1,12 +1,11 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
-using NUnit.Framework;
 
 namespace SpecUnit
 {
     class Class1
     {
-       //[Test]
+        //[Test]
         public void testMethod()
         {
             // start reporters
