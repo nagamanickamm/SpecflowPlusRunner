@@ -49,16 +49,15 @@ namespace SpecFlowProject.Hooks
         {
             featureName = extent.CreateTest<Feature>(_featureContext.FeatureInfo.Title);
             Console.Write("Starting " + _featureContext.FeatureInfo.Title);
-            DriverFactory driverFactory = new DriverFactory("Chrome");
-            _featureContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
-            Console.WriteLine("Path:" + path);
+            //DriverFactory driverFactory = new DriverFactory();
+            //_featureContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
         }
 
         [AfterFeature]
         public static void AfterFeature(FeatureContext _featureContext)
         {
             Console.Write("Starting " + _featureContext.FeatureInfo.Title);
-            _featureContext.Get<IWebDriver>(Global.Variables.driverIntance).Quit();
+            //_featureContext.Get<IWebDriver>(Global.Variables.driverIntance).Quit();
         }
 
         [BeforeScenario]
@@ -68,7 +67,9 @@ namespace SpecFlowProject.Hooks
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title);
 
             Console.Write("Im am Before Scenario");
-            IWebDriver driver = featureContext.Get<IWebDriver>(Global.Variables.driverIntance);
+            DriverFactory driverFactory = new DriverFactory();
+            scenarioContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
+            IWebDriver driver = driverFactory.getDriver();
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Navigate().GoToUrl(Global.Variables.baseURL);
         }
@@ -77,13 +78,14 @@ namespace SpecFlowProject.Hooks
         public void AfterScenario()
         {
             Console.Write("Im am after Scenario");
+            IWebDriver driver = scenarioContext.Get<IWebDriver>(Global.Variables.driverIntance);
             if (scenarioContext.TestError != null)
             {
-                IWebDriver driver = featureContext.Get<IWebDriver>(Global.Variables.driverIntance);
                 Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
                 ss.SaveAsFile(path + "\\screenshot.png", ScreenshotImageFormat.Png);
                 scenario.AddScreenCaptureFromPath("screenshot.png");
             }
+            driver.Quit();
         }
 
         [AfterStep]
