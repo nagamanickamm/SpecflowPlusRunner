@@ -22,7 +22,11 @@ namespace SpecFlowProject.Drivers
             else
             {
                 new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), "89.0.4389.23");
-                driverInstance = new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.AddArguments("--headless");
+                chromeOptions.AddArguments("--no-sandbox");
+                chromeOptions.AddArguments("--disable-dev-shm-usage");
+                driverInstance = new ChromeDriver(chromeOptions);
             }
 
             driverInstance.Manage().Window.Maximize();
