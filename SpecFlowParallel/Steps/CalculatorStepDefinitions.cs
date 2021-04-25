@@ -1,55 +1,48 @@
 ﻿using OpenQA.Selenium;
-using System;
+using OpenQA.Selenium.Firefox;
 using TechTalk.SpecFlow;
+using WebDriverManager.DriverConfigs.Impl;
 
-namespace SpecFlowProject.Steps
+namespace SpecFlowParallel.Steps
 {
     [Binding]
     public sealed class CalculatorStepDefinitions
     {
 
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
+
         private readonly ScenarioContext _scenarioContext;
-        private IWebDriver driver;
 
         public CalculatorStepDefinitions(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
-             driver = scenarioContext.Get<IWebDriver>(Global.Variables.driverIntance);
         }
 
-        [Given("the first number is (.*)"), Scope(Tag = "calc")]
+        [Given("the first number is (.*)")]
         public void GivenTheFirstNumberIs(int number)
         {
-            driver.Navigate().GoToUrl("https://www.bbc.com");
-            Console.Write("Given");
-        }
-
-        [Given("the first number is (.*)"), Scope(Tag = "smoke")]
-        public void GivenTheFirstNumberIsG(int number)
-        {
-            driver.Navigate().GoToUrl("https://www.google.com");
-            Console.Write("Given");
+            _scenarioContext.Add("driverManager", new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig()));
         }
 
         [Given("the second number is (.*)")]
         public void GivenTheSecondNumberIs(int number)
         {
-
-            Console.Write("Given");
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            firefoxOptions.AddArguments("-headless");
+            IWebDriver driver = new FirefoxDriver(firefoxOptions);
+            _scenarioContext.Add("driver", driver);
         }
 
         [When("the two numbers are added")]
         public void WhenTheTwoNumbersAreAdded()
         {
-
-            Console.Write("When");
+            _scenarioContext.Get<IWebDriver>("driver").Navigate().GoToUrl("https://www.bbc.com");
         }
 
         [Then("the result should be (.*)")]
         public void ThenTheResultShouldBe(int result)
         {
-            Console.Write("Then");
+            _scenarioContext.Get<IWebDriver>("driver").Quit();
         }
     }
 }

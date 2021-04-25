@@ -1,7 +1,7 @@
 ﻿Feature: SpecFlowFeature
 
-@specflow
-Scenario: Add two numbers
+@smoke
+Scenario: Add two numbers and smoke
 	Given the first number is 50
 	And the second number is 70
 	When the two numbers are added

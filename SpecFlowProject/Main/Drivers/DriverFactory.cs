@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using TechTalk.SpecFlow;
 using WebDriverManager.DriverConfigs.Impl;
 
 namespace SpecFlowProject.Drivers
@@ -8,13 +9,19 @@ namespace SpecFlowProject.Drivers
     public class DriverFactory
     {
 
-        public IWebDriver driverInstance;
+        private readonly ScenarioContext _scenarioContext;
 
-        public DriverFactory(string name = "Firefox")
+        public DriverFactory(ScenarioContext scenarioContext)
         {
+            _scenarioContext = scenarioContext;
+        }
+
+        public void CreateDriver(string name="Firefox")
+        {
+            IWebDriver driverInstance;
             if (name == "Firefox")
             {
-                new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
+                _scenarioContext.Add(Global.Variables.driverManager, new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig()));
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.AddArguments("-headless");
                 driverInstance = new FirefoxDriver(firefoxOptions);
@@ -31,11 +38,12 @@ namespace SpecFlowProject.Drivers
 
             driverInstance.Manage().Window.Maximize();
             driverInstance.Navigate().GoToUrl(Global.Variables.baseURL);
+            _scenarioContext.Add(Global.Variables.driverIntance, driverInstance);
         }
 
         public IWebDriver getDriver()
         {
-            return driverInstance;
+            return _scenarioContext.Get<IWebDriver>(Global.Variables.driverIntance);
         }
     }
 }
