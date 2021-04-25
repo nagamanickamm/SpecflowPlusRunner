@@ -10,7 +10,7 @@ namespace SpecFlowProject.Steps
 
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
         private readonly ScenarioContext _scenarioContext;
-        private IWebDriver driver;
+        private readonly IWebDriver driver;
 
         public CalculatorStepDefinitions(ScenarioContext scenarioContext)
         {

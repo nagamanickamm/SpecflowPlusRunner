@@ -67,8 +67,8 @@ namespace SpecFlowProject.Hooks
             scenario = featureName.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title);
 
             Console.Write("Im am Before Scenario");
-            DriverFactory driverFactory = new DriverFactory();
-            scenarioContext.Add(Global.Variables.driverIntance, driverFactory.getDriver());
+            DriverFactory driverFactory = new(scenarioContext);
+            driverFactory.CreateDriver();
             IWebDriver driver = driverFactory.getDriver();
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Navigate().GoToUrl(Global.Variables.baseURL);
