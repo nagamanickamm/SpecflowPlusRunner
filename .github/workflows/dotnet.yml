@@ -8,11 +8,15 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        Plan: [Regression,Smoke]
 
     steps:
     - uses: actions/checkout@v2
+      env:
+          PLAN: ${{matrix.Plan}}
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
@@ -47,7 +51,7 @@ jobs:
       with:
         name: extent-report
         path:
-          /home/runner/work/SpecflowPlusRunner/TestResults/SpecRun/      
+          ${{ github.workspace }}/TestResults/SpecRun/      
     
     
         
