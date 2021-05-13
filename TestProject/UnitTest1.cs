@@ -7,7 +7,7 @@ namespace TestProject
 {
     public class baseClass
     {
-        IWebDriver driver;
+        private IWebDriver driver;
 
         public IWebDriver getDriver()
         {
@@ -20,7 +20,7 @@ namespace TestProject
     }
 
     [TestFixture]
-    public class UnitTest:baseClass
+    public class UnitTest : baseClass
     {
         [Test]
         public void TestMethod1()
@@ -41,7 +41,7 @@ namespace TestProject
 
     }
     [TestFixture]
-    public class UnitTest2:baseClass
+    public class UnitTest2 : baseClass
     {
         [Test]
         public void TestMethod2()

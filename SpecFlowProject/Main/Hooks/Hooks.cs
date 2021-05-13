@@ -25,7 +25,7 @@ namespace SpecFlowProject.Hooks
 
         public Hooks(FeatureContext _featureContext)
         {
-            this.featureContext = _featureContext;
+            featureContext = _featureContext;
         }
 
         [BeforeTestRun]
@@ -88,42 +88,42 @@ namespace SpecFlowProject.Hooks
             driver.Quit();
         }
 
-        //[AfterStep]
-        //public void InsertReportingSteps()
-        //{
-        //    var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
+        [AfterStep]
+        public void InsertReportingSteps()
+        {
+            var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
 
-        //    if (scenarioContext.TestError == null)
-        //    {
-        //        if (stepType == "Given")
-        //            scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text);
-        //        else if (stepType == "When")
-        //            scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text);
-        //        else if (stepType == "Then")
-        //            scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text);
-        //        else if (stepType == "And")
-        //            scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text);
-        //    }
-        //    else if (scenarioContext.TestError != null)
-        //    {
-        //        if (stepType == "Given")
-        //        {
-        //            scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
-        //        }
-        //        else if (stepType == "When")
-        //        {
-        //            scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
-        //        }
-        //        else if (stepType == "Then")
-        //        {
-        //            scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
-        //        }
-        //        else if (stepType == "And")
-        //        {
-        //            scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
-        //        }
-        //    }
-        //}
+            if (scenarioContext.TestError == null)
+            {
+                if (stepType == "Given")
+                    scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text);
+                else if (stepType == "When")
+                    scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text);
+                else if (stepType == "Then")
+                    scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text);
+                else if (stepType == "And")
+                    scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text);
+            }
+            else if (scenarioContext.TestError != null)
+            {
+                if (stepType == "Given")
+                {
+                    scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
+                }
+                else if (stepType == "When")
+                {
+                    scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
+                }
+                else if (stepType == "Then")
+                {
+                    scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
+                }
+                else if (stepType == "And")
+                {
+                    scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(scenarioContext.TestError.Message);
+                }
+            }
+        }
 
     }
 }

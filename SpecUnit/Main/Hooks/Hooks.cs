@@ -28,7 +28,7 @@ namespace SpecUnit.Hooks
 
         public Hooks(FeatureContext _featureContext)
         {
-            this.featureContext = _featureContext;
+            featureContext = _featureContext;
         }
 
         [BeforeTestRun]

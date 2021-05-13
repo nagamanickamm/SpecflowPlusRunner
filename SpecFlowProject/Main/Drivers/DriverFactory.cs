@@ -16,14 +16,14 @@ namespace SpecFlowProject.Drivers
             _scenarioContext = scenarioContext;
         }
 
-        public void CreateDriver(string name="Firefox")
+        public void CreateDriver(string name = "Firefox")
         {
             IWebDriver driverInstance;
             if (name == "Firefox")
             {
                 _scenarioContext.Add(Global.Variables.driverManager, new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig()));
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.AddArguments("-headless");
+               // firefoxOptions.AddArguments("-headless");
                 driverInstance = new FirefoxDriver(firefoxOptions);
             }
             else
@@ -37,7 +37,6 @@ namespace SpecFlowProject.Drivers
             }
 
             driverInstance.Manage().Window.Maximize();
-            driverInstance.Navigate().GoToUrl(Global.Variables.baseURL);
             _scenarioContext.Add(Global.Variables.driverIntance, driverInstance);
         }
 

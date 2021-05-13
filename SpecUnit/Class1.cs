@@ -3,7 +3,7 @@ using AventStack.ExtentReports.Reporter;
 
 namespace SpecUnit
 {
-    class Class1
+    internal class Class1
     {
         //[Test]
         public void testMethod()

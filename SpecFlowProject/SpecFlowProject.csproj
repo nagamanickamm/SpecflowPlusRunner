@@ -6,21 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <CustomAdditionalCompileInputs Remove="Test\Features\Calculator.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Test\Features\SpecFlowFeature.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckBuild Remove="Test\Features\Calculator.feature.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="ExtentReports" Version="4.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="Selenium.Support" Version="4.0.0-beta1" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.0.0-beta1" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.7.141" />
 
     
@@ -59,7 +49,6 @@
 
   <ItemGroup>
     <Folder Include="Main\Helpers\" />
-    <Folder Include="Main\Pages\" />
   </ItemGroup>
 
 </Project>
