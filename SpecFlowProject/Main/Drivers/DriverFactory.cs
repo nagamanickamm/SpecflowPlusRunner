@@ -23,7 +23,7 @@ namespace SpecFlowProject.Drivers
             {
                 _scenarioContext.Add(Global.Variables.driverManager, new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig()));
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-               // firefoxOptions.AddArguments("-headless");
+                firefoxOptions.AddArguments("-headless");
                 driverInstance = new FirefoxDriver(firefoxOptions);
             }
             else
